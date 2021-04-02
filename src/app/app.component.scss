@@ -10,3 +10,33 @@
   border: 1px solid black;
   border-radius: 4px;
 }
+
+.gt-lt-filter {
+  display: flex;
+  align-items: center;
+}
+
+.color-square {
+  display: inline-block;
+  vertical-align: bottom;
+  height: 13px;
+  width: 13px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.color-filter {
+  display: block;
+  width: 100px;
+}
+
+.color-selectable {
+  cursor: pointer;
+  margin: 2px;
+  opacity: 0.2;
+
+  &:hover,
+  &.color-selected {
+    opacity: 1;
+  }
+}
