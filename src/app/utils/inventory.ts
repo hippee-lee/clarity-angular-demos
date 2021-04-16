@@ -50,12 +50,10 @@ export class Inventory {
         if (filters[key].length === 0) {
           continue;
         }
-
         let getFilterProperty = (user: User) => '' + user[key];
         if (key === 'pokemon') {
           getFilterProperty = (user: User) => user.pokemon.name;
         }
-
         const lowerCase = filters[key].map(value => value.toLowerCase());
         this._currentQuery = this._currentQuery.filter(user => {
           for (const value of lowerCase) {

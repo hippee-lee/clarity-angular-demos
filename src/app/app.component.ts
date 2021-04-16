@@ -15,17 +15,11 @@ export class AppComponent {
   users: User[];
   total: number;
   loading = true;
-  allColors = COLORS;
-  clrDgPageInputDisabled = false;
 
   constructor(private inventory: Inventory) {
     inventory.size = 103;
+    this.inventory.latency = 500;
     inventory.reset();
-    this.users = inventory.all;
-  }
-
-  pageChange(pageNumber: number) {
-    console.log(pageNumber);
   }
 
   refresh(state: ClrDatagridStateInterface<User>) {
@@ -33,8 +27,12 @@ export class AppComponent {
     const filters: { [prop: string]: any[] } = {};
     if (state.filters) {
       for (const filter of state.filters) {
-        const { property, value } = filter;
-        filters[property] = [value];
+        if(filter.selectedColors) {
+          filters['color'] = Object.keys(filter.selectedColors);
+        } else {
+          const { property, value } = filter;
+          filters[property] = [value.toLowerCase()];
+        }
       }
     }
     this.inventory
